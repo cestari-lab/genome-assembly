@@ -1,4 +1,4 @@
-# genome-assembly
+# Genome-assembly
 Code for assembly of genome
 
 # Genome Assembly and Analysis Pipeline
@@ -52,3 +52,11 @@ Tool: circlize, viridis (R)
 Description: Generates circular synteny plots from PAF files.
 Output: Circular synteny plots.
 
+# Contributing
+If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+# Licensing
+The code in this project is licensed under a CC BY-NC 4.0 license. This means you can use it with proper attribution to original authors, indicating if any modifications were done, only for non commercial applications. (https://creativecommons.org/licenses/by-nc/4.0/)
+
+# Links
+If you want to see more of our work you can check out our website: https://www.cestarilab.com/
