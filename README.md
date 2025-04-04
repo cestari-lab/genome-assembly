@@ -3,6 +3,7 @@ Code for assembly of genome
 
 # Genome Assembly and Analysis Pipeline
 **Overview**
+
 This repository contains a comprehensive pipeline for genome assembly, scaffolding, repeat analysis and synteny analysis. The pipeline is designed for processing PacBio HIFI reads and includes steps for assembly improvement using Pore-C data, repeat annotation, and comparative genomics.
 
 The pipeline is modular, allowing users to execute specific steps independently or as a complete workflow.
