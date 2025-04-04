@@ -41,7 +41,7 @@ Tool: NGSEP
 Description: Sorts chromosomes based on a reference genome.
 Output: Sorted genome files.
 * Step 4: Repeat Analysis
-Tool: RepeatModeler, RepeatMasker
+Tool: RepeatModeler, RepeatMasker, repeats count per chromosome.
 Description: Identifies and annotates repetitive elements in the genome.
 Output: Repeat annotation files.
 * Step 5: Synteny Analysis
