@@ -65,4 +65,24 @@ BuildDatabase -name ${OUTPUT_DIR}/${SAMPLE_NAME}_repeat_db ${ASSEMBLY_DIR}/${SAM
 RepeatModeler -database ${OUTPUT_DIR}/${SAMPLE_NAME}_repeat_db -pa 36 -LTRStruct > ${OUTPUT_DIR}/${SAMPLE_NAME}_repeat_modeler.log
 RepeatMasker -pa 36 -gff -lib consensi-refined.fa -dir ${OUTPUT_DIR}/${SAMPLE_NAME}_repeat_masker ${ASSEMBLY_DIR}/${SAMPLE_NAME}.asm.bp.p_ctg.fa
 
+### Step 5: GC Content and N Count for repeats calculation ###
+echo "Calculating GC content and N count for masked genome..."
+MASKED_GENOME="${OUTPUT_DIR}/${SAMPLE_NAME}_repeat_masker/T.cruzi_Sylvio_HIFI_genome.sorted.fa.masked"
+
+# Calculate GC content for each sequence
+less $MASKED_GENOME | grep ">" | sed s'/>//'g | while read -r line; do
+    GC_COUNT=$(samtools faidx $MASKED_GENOME "$line" | grep -E -o "G|C|T|A" | wc -l)
+    echo "Sequence: $line, GC Content: $GC_COUNT"
+done > ${OUTPUT_DIR}/${SAMPLE_NAME}_gc_content.txt
+
+# Count "N" bases for each sequence
+less $MASKED_GENOME | grep ">" | sed s'/>//'g | while read -r line; do
+    N_COUNT=$(samtools faidx $MASKED_GENOME "$line" | grep -E -o "N" | wc -l)
+    echo "Sequence: $line, N Count: $N_COUNT"
+done > ${OUTPUT_DIR}/${SAMPLE_NAME}_n_count.txt
+
+# Calculate total length of sequences
+echo "Calculating total length of sequences..."
+bioawk -c fastx '{print $name, length($seq)}' $MASKED_GENOME > ${OUTPUT_DIR}/${SAMPLE_NAME}_total_length.txt
+
 echo "Assembly, scaffolding, and repeat analysis completed successfully."
